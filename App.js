@@ -17,6 +17,20 @@ export default function App() {
   const notificationListener = useRef();
   const responseListener = useRef();
 
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
+
+  React.useEffect(() => {
+    if (
+      lastNotificationResponse &&
+      lastNotificationResponse.notification.request.content.data['someDataToCheck'] &&
+      lastNotificationResponse.actionIdentifier === Notifications.DEFAULT_ACTION_IDENTIFIER
+    ) {
+      // navigate to your desired screen
+      alert('Got a notification')
+      alert(lastNotificationResponse.notification.request.content)
+    }
+  }, [lastNotificationResponse]);
+
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
       setExpoPushToken(token)
@@ -25,6 +39,7 @@ export default function App() {
     // This listener is fired whenever a notification is received while the app is foregrounded
     notificationListener.current = Notifications.addNotificationReceivedListener(
       (notification) => {
+        alert('Got a notification foregrounded ')
         setNotification(notification);
       }
     );
@@ -33,6 +48,7 @@ export default function App() {
     responseListener.current = Notifications.addNotificationResponseReceivedListener(
       (response) => {
         console.log(response);
+        alert(response)
       }
     );
 
@@ -56,10 +72,10 @@ export default function App() {
           Title: {notification && notification.request.content.title}{" "}
         </Text>
         <Text>Body: {notification && notification.request.content.body}</Text>
-        {/* <Text>
+        <Text>
           Data:{" "}
           {notification && JSON.stringify(notification.request.content.data)}
-        </Text> */}
+        </Text>
       </View>
       <Button
         title="Press to Send Notification"
@@ -78,7 +94,7 @@ async function sendPushNotification(expoPushToken) {
     sound: "default",
     title: "Expo push Notification",
     body: "Hi there!",
-    //   data: { Data: "You just received a notification from Expo" },
+    data: { Data: "You just received a notification from Expo", someDataToCheck: true },
   };
 
   await fetch("https://exp.host/--/api/v2/push/send", {

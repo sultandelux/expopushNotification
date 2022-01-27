@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "829173407156",
+    "project_id": "opera-370bc",
+    "storage_bucket": "opera-370bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829173407156:android:bafb2b252237323c08e6e1",
+        "android_client_info": {
+          "package_name": "com.opera.sizze"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829173407156-mid693nimp4uantfl6jmpi7t220gsvgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWqX7Rp1aqoU9H7KCZMZHHvb13mnZBmpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829173407156-mid693nimp4uantfl6jmpi7t220gsvgj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
